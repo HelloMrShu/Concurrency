@@ -24,5 +24,5 @@ func main() {
 	}
 	time.Sleep(1 * time.Second)
 	wg.Wait()
-	fmt.Println("wait_group is over")
+	fmt.Println("task is done")
 }
