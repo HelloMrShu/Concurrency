@@ -6,13 +6,17 @@ import (
 	"time"
 )
 
+// control the concurrency with buffered channel
+
 func main() {
 	limit := 3
+	taskCount := 30 //task total number
 	wg := sync.WaitGroup{} //to make sure all goroutines are done
+
 	ch := make(chan int, limit) // channel with buffer and blocked when buffer is full
 	defer close(ch)
 
-	for i := 0; i < 30; i++ {
+	for i := 0; i < taskCount; i++ {
 		ch <- i
 		wg.Add(1)
 		go func(x int) {
