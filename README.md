@@ -3,18 +3,15 @@ Golang concurrency control
 
 
 
-To be honest, concurrency control feature in golang is very interesting and meaningful, and it helps us to do more efficient task, for example, download, request and so on. 
-
-Here we will do some jobs to discuss the feature in some scenario.
+Concurrency control feature in golang is very interesting and meaningful, and it helps us to do more efficient task, for example, download, request and so on. Here we will do some jobs to discuss the feature in some scenario.
 
 ### 1. sync.WaitGroup
 
 ---
-Some tasks need a group of goroutine to complete and a goroutine just does a part of the task. We can use the WaitGroup to do it.
+Some tasks need a group of goroutine to complete and a goroutine just does a part of the task. We can use the WaitGroup to do that.However, wg can't control the certain number of concurrency. So you should understand the feature to avoid some mistakes.
 
-However, wg can't control the certain number of concurrency. So you should understand the feature to avoid so mistakes.
+The core methods as follows:
 
-The core methods are as follows:
 ~~~go
 wg := sync.WaitGroup
 for i:=0; i < 10; i++ {
@@ -31,8 +28,8 @@ for i:=0; i < 10; i++ {
 ### 2.channel
 
 ---
-The buffered channel can be used as a tool for concurrency control. And the buffer size is the concurrency limit.
-we can use sync.WaitGroup to make sure all goroutines are done.
+The buffered channel can be used as a tool for concurrency control. And the buffer size is the concurrency limit.we can use sync.WaitGroup to make sure all goroutines are done.
+
 ```go
 limit := 10 //concurrency limit is 10
 wg := sync.WaitGroup
