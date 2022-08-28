@@ -46,3 +46,23 @@ for i:= 0; i < 10; i++ {
 	fmt.Println("main goroutine is done")
 }
 ```
+
+### 3.channel + context
+---
+context controls a group of goroutine, and each has the same context, u can use the root context to handle the child context.
+
+```go
+type Workshop struct {
+	pipe   chan Job
+	wg     sync.WaitGroup
+	ctx    context.Context
+	cancel context.CancelFunc
+}
+type Worker struct {
+	id   int
+	pipe <-chan Job
+}
+type Job interface {
+	Process()
+}
+```
